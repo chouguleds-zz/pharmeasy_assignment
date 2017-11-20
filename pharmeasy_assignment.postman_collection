@@ -1,0 +1,363 @@
+{
+	"id": "e9276d88-f6bc-d7f2-ccde-c7257f33d3f1",
+	"name": "pharmeasy_assignment",
+	"description": "",
+	"order": [
+		"93ab705b-2076-fb37-e645-4d2f7c5e36a4",
+		"83b9b729-39ed-1539-90c4-412927a026e1",
+		"415ffeec-d404-7008-cc46-0aeceee4e8cb",
+		"13a5a704-00c1-661c-05a8-f140b234a462",
+		"e49e1228-dfb4-ef01-f10b-c59d117ddf75",
+		"0421e3c9-5689-0e17-f48a-317c2beda442",
+		"b875a90b-a9c5-498b-0af6-8ee38f03764d",
+		"a8956583-5b20-6d89-bca3-3b2adec264b4",
+		"527d6672-49f1-f22b-677e-584ece049f5b",
+		"2747cd15-a8c3-e4a6-659a-d6a07b431960"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1511061582337,
+	"owner": "648957",
+	"public": false,
+	"requests": [
+		{
+			"id": "0421e3c9-5689-0e17-f48a-317c2beda442",
+			"headers": "authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YTExMjQwMmYwMjhmZDJmYzljYzRkZWIiLCJpYXQiOjE1MTExNzk2NDYsImV4cCI6MTUxMTIxNTY0Nn0.dlWlj6W3BklOo9OTNlxFOGm9oHIfKyV1NtSCO3YtbrI\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "authorization",
+					"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YTExMjQwMmYwMjhmZDJmYzljYzRkZWIiLCJpYXQiOjE1MTExNzk2NDYsImV4cCI6MTUxMTIxNTY0Nn0.dlWlj6W3BklOo9OTNlxFOGm9oHIfKyV1NtSCO3YtbrI",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "18.217.49.88:9000/api/presc_view_requests/getPatientPendingRequests",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1511183958556,
+			"name": "get pending requests",
+			"description": "",
+			"collectionId": "e9276d88-f6bc-d7f2-ccde-c7257f33d3f1",
+			"responses": [],
+			"rawModeData": "{\n\t\"limit\": 10,\n\t\"offset\": 0\n}"
+		},
+		{
+			"id": "13a5a704-00c1-661c-05a8-f140b234a462",
+			"headers": "Content-Type: application/json\nauthorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YTEyZDVhMWUwODQxOTExYmFjMTk4ZWMiLCJpYXQiOjE1MTExODYwODksImV4cCI6MTUxMTIyMjA4OX0.dmM8fMClrAPRMXeJOPra1eFUGbGjY0IYq2iyd5PzRs4\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "authorization",
+					"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YTEyZDVhMWUwODQxOTExYmFjMTk4ZWMiLCJpYXQiOjE1MTExODYwODksImV4cCI6MTUxMTIyMjA4OX0.dmM8fMClrAPRMXeJOPra1eFUGbGjY0IYq2iyd5PzRs4",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "18.217.49.88:9000/api/treatment_records/create",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1511186151218,
+			"name": "create treatment records",
+			"description": "",
+			"collectionId": "e9276d88-f6bc-d7f2-ccde-c7257f33d3f1",
+			"responses": [],
+			"rawModeData": "{\n\t\"appointment_id\": \"5a12d5f1e0841911bac198ed\",\n\t\"patient\": \"deepak@gmail.com\",\n\t\"consulted_doctor\": \"akash@gmail.com\",\n\t\"diagnosis\": \"fever\",\n\t\"summery\": \"patient has high fever\",\n\t\"date\": 1511081013000,\n\t\"prescription\": [{\n\t\t\"medication\": \"crosine\",\n\t\t\"from_date\": 1511081013000,\n\t\t\"to_date\": 1511953771000,\n\t\t\"instructions\": \"daily one tablet\"\n\t}]\n}"
+		},
+		{
+			"id": "2747cd15-a8c3-e4a6-659a-d6a07b431960",
+			"headers": "authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YTEyZDVhMWUwODQxOTExYmFjMTk4ZWMiLCJpYXQiOjE1MTExODYwODksImV4cCI6MTUxMTIyMjA4OX0.dmM8fMClrAPRMXeJOPra1eFUGbGjY0IYq2iyd5PzRs4\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "authorization",
+					"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YTEyZDVhMWUwODQxOTExYmFjMTk4ZWMiLCJpYXQiOjE1MTExODYwODksImV4cCI6MTUxMTIyMjA4OX0.dmM8fMClrAPRMXeJOPra1eFUGbGjY0IYq2iyd5PzRs4",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "18.217.49.88:9000/api/appointments/getAppointments",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1511186108192,
+			"name": "Get All Appointments",
+			"description": "",
+			"collectionId": "e9276d88-f6bc-d7f2-ccde-c7257f33d3f1",
+			"responses": [],
+			"rawModeData": "{\n\t\"limit\": 10,\n\t\"offset\": 0\n}"
+		},
+		{
+			"id": "415ffeec-d404-7008-cc46-0aeceee4e8cb",
+			"headers": "Content-Type: application/json\nauthorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YTEyZDU4ZWUwODQxOTExYmFjMTk4ZWIiLCJpYXQiOjE1MTExODM4MTMsImV4cCI6MTUxMTIxOTgxM30.C7umh0gYNcUEYnS7ykDO63zjsXOXpwHD-qt0J7Y6lx0\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "authorization",
+					"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YTEyZDU4ZWUwODQxOTExYmFjMTk4ZWIiLCJpYXQiOjE1MTExODM4MTMsImV4cCI6MTUxMTIxOTgxM30.C7umh0gYNcUEYnS7ykDO63zjsXOXpwHD-qt0J7Y6lx0",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "18.217.49.88:9000/api/appointments/create",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1511183928364,
+			"name": "create appointment",
+			"description": "",
+			"collectionId": "e9276d88-f6bc-d7f2-ccde-c7257f33d3f1",
+			"responses": [],
+			"rawModeData": "{\n\t\"patient\": \"deepak@gmail.com\",\n\t\"consulting_doctor\": \"akash@gmail.com\",\n\t\"from_time\": 1511183874000,\n\t\"to_time\": 1511187474000\n}"
+		},
+		{
+			"id": "527d6672-49f1-f22b-677e-584ece049f5b",
+			"headers": "Content-Type: application/json\nauthorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YTExNmJkZDkzZmY1OTUyMTBmZGVlMjkiLCJpYXQiOjE1MTExODAxMDgsImV4cCI6MTUxMTIxNjEwOH0.XQrBebqcAysATNU9v7jbU3beWP6BXw5JWoipBeWLodI\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "authorization",
+					"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YTExNmJkZDkzZmY1OTUyMTBmZGVlMjkiLCJpYXQiOjE1MTExODAxMDgsImV4cCI6MTUxMTIxNjEwOH0.XQrBebqcAysATNU9v7jbU3beWP6BXw5JWoipBeWLodI",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "18.217.49.88:9000/api/treatment_records/viewRecord",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1511183972835,
+			"name": "view treatment records",
+			"description": "",
+			"collectionId": "e9276d88-f6bc-d7f2-ccde-c7257f33d3f1",
+			"responses": [],
+			"rawModeData": "{\n\t\"request_id\": \"5a11b45aee75db6af7ac2989\",\n\t\"limit\": 10,\n\t\"offset\": 0\n}"
+		},
+		{
+			"id": "83b9b729-39ed-1539-90c4-412927a026e1",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "18.217.49.88:9000/api/users/create",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1511183930515,
+			"name": "create user",
+			"description": "",
+			"collectionId": "e9276d88-f6bc-d7f2-ccde-c7257f33d3f1",
+			"responses": [],
+			"rawModeData": "{\n\t\"name\": \"akash\",\n\t\"email\":\"akash@gmail.com\",\n\t\"password\": \"akash\",\n\t\"role\": \"doctor\",\n\t\"gender\": \"male\"\n}"
+		},
+		{
+			"id": "93ab705b-2076-fb37-e645-4d2f7c5e36a4",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "18.217.49.88:9000/auth/local",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1511186340269,
+			"name": "User Login",
+			"description": "",
+			"collectionId": "e9276d88-f6bc-d7f2-ccde-c7257f33d3f1",
+			"responses": [],
+			"rawModeData": "{\n\t\"email\": \"akash@gmail.com\",\n\t\"password\": \"akash\"\n}"
+		},
+		{
+			"id": "a8956583-5b20-6d89-bca3-3b2adec264b4",
+			"headers": "Content-Type: application/json\nauthorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YTExNmJkZDkzZmY1OTUyMTBmZGVlMjkiLCJpYXQiOjE1MTExODAxMDgsImV4cCI6MTUxMTIxNjEwOH0.XQrBebqcAysATNU9v7jbU3beWP6BXw5JWoipBeWLodI\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "authorization",
+					"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YTExNmJkZDkzZmY1OTUyMTBmZGVlMjkiLCJpYXQiOjE1MTExODAxMDgsImV4cCI6MTUxMTIxNjEwOH0.XQrBebqcAysATNU9v7jbU3beWP6BXw5JWoipBeWLodI",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "18.217.49.88:9000/api/presc_view_requests/getSentRequests",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1511183968594,
+			"name": "get sent presc view requests",
+			"description": "",
+			"collectionId": "e9276d88-f6bc-d7f2-ccde-c7257f33d3f1",
+			"responses": [],
+			"rawModeData": "{\n\t\"limit\": 10,\n\t\"offset\": 0\n}"
+		},
+		{
+			"id": "b875a90b-a9c5-498b-0af6-8ee38f03764d",
+			"headers": "Content-Type: application/json\nauthorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YTExMjQwMmYwMjhmZDJmYzljYzRkZWIiLCJpYXQiOjE1MTExMTAzNjEsImV4cCI6MTUxMTE0NjM2MX0.tsrBTw3v8dMmkqGgNd0D16zArj2YHHvToxK1-Pm-U6k\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "authorization",
+					"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YTExMjQwMmYwMjhmZDJmYzljYzRkZWIiLCJpYXQiOjE1MTExMTAzNjEsImV4cCI6MTUxMTE0NjM2MX0.tsrBTw3v8dMmkqGgNd0D16zArj2YHHvToxK1-Pm-U6k",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "18.217.49.88:9000/api/presc_view_requests/approve",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1511183963769,
+			"name": "approve presc view request",
+			"description": "",
+			"collectionId": "e9276d88-f6bc-d7f2-ccde-c7257f33d3f1",
+			"responses": [],
+			"rawModeData": "{\n\t\"viewRequestId\": \"5a11b45aee75db6af7ac2989\"\n}"
+		},
+		{
+			"id": "e49e1228-dfb4-ef01-f10b-c59d117ddf75",
+			"headers": "Content-Type: application/json\nauthorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YTExNmJkZDkzZmY1OTUyMTBmZGVlMjkiLCJpYXQiOjE1MTExMDk2NjQsImV4cCI6MTUxMTE0NTY2NH0.DkkPPN5wsae2gDaBQUtUAnIwRFjMBrw3FmvZKdOBPvU\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "authorization",
+					"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YTExNmJkZDkzZmY1OTUyMTBmZGVlMjkiLCJpYXQiOjE1MTExMDk2NjQsImV4cCI6MTUxMTE0NTY2NH0.DkkPPN5wsae2gDaBQUtUAnIwRFjMBrw3FmvZKdOBPvU",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "18.217.49.88:9000/api/presc_view_requests/create",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1511183953691,
+			"name": "create presc view request",
+			"description": "",
+			"collectionId": "e9276d88-f6bc-d7f2-ccde-c7257f33d3f1",
+			"responses": [],
+			"rawModeData": "{\n\n\"patient\": \"chougule.ds@gmail.com\",\n \"filters\": {\n \t\"consulted_doctor\": \"akash@gmail.com\"\n }\t\n}"
+		}
+	]
+}
