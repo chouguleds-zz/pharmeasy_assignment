@@ -151,26 +151,54 @@ Response: {
     "message": "Appointment booked."
 }
 ```
-getAppointments
 
 ##### `Get All Doctor's Appointments`:
-Using this api patient will create the appointment with following details.
+Using this api doctor can see all the appointments. This api is paginated.
 ```
 
 Method: POST,
-URL: /api/appointments/create,
+URL: /api/appointments/getAppointments,
 Payload: {
-	"patient": "chougule.ds@gmail.com",
-	"consulting_doctor": "akash@gmail.com",
-	"from_time": 1511081013000,
-	"to_time":1511084613000
+    "limit": 10,
+    "offset": 0
 },
 Headers: {
     "authorization": "jwt token"
 },
 Response: {
-    "success": false,
-    "message": "Appointment booked."
+  "success": true,
+  "appointments": [
+      {
+          "_id": "5a1147eb685a1482e6aa3cca",
+          "updated_at": "2017-11-19T08:59:23.496Z",
+          "created_at": "2017-11-19T08:59:23.496Z",
+          "patient": "chougule.ds@gmail.com",
+          "consulting_doctor": "akash@gmail.com",
+          "from_time": "2017-11-19T08:43:33.000Z",
+          "to_time": "2017-11-19T09:43:33.000Z",
+          "status": "booked",
+          "__v": 0,
+          "patientField": {
+              "name": "deepak",
+              "email": "chougule.ds@gmail.com"
+          }
+      },
+      {
+          "_id": "5a12a26f86451790326ce321",
+          "updated_at": "2017-11-20T09:37:56.625Z",
+          "created_at": "2017-11-20T09:37:56.625Z",
+          "patient": "chougule.ds@gmail.com",
+          "consulting_doctor": "akash@gmail.com",
+          "from_time": "2017-11-19T08:43:33.000Z",
+          "to_time": "2017-11-19T09:43:33.000Z",
+          "status": "booked",
+          "__v": 0,
+          "patientField": {
+              "name": "deepak",
+              "email": "chougule.ds@gmail.com"
+          }
+      }
+  ]
 }
 ```
 ##### `Create treatment record`:
