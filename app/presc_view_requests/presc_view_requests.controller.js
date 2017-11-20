@@ -1,73 +1,24 @@
 'use strict'
+
 const PrescViewRequest = require('./presc_view_requests.model')
 const User = require('../users/users.model')
-const TreatmentRecord = require('../treatment_records/treatment_records.model')
+const treatmentRecordDal = require('../treatment_records/treatment_record.dal')
+const prescViewRequestDal = require('./presc_view_request.dal')
 
-const _generateDateQuery = function (startDate, endDate) {
-
-  const fromDate = {
-    day: startDate.getDate(),
-    month: startDate.getMonth(),
-    year: startDate.getFullYear()
-  }
-
-  const toDate = {
-    day: endDate.getDate(),
-    month: endDate.getMonth(),
-    year: endDate.getFullYear()
-  }
-  return {
-    $gte: new Date(fromDate.year, fromDate.month, fromDate.day),
-    $lt: new Date(toDate.year, toDate.month, toDate.day)
-  }
-}
-
-const _generateViewRequestQuery = function (patient, filter) {
-
-  const query = {}
-  query.patient = patient
-
-  if (filter.appointment_id) {
-    query.appointment_id = filter.appointment_id
-  }
-  if (filter.by_doctor) {
-    query.by_doctor = filter.by_doctor
-  }
-  if (filter.appointmentDate) {
-
-    let fromDate = null
-    let toDate = null
-
-    if (filter.appointmentDate.type === 'exact') {
-
-      fromDate = new Date(filter.appointmentDate.exact)
-      toDate = fromDate.setDate(fromDate.getDate() + 1)
-    } else if (filter.appointmentDate.type === 'range') {
-
-      fromDate = new Date(filter.appointmentDate.range.from)
-      toDate = new Date(filter.appointmentDate.range.to)
-    }
-    query.date = _generateDateQuery(fromDate, toDate)
-  }
-  return query
-}
-
-const getPendingRequestsFromDb = async function (patient, pendingRequests) {
+/**
+ * Private function to get the treatment records from the database
+ *
+ * @param patient email of the patient
+ * @param pendingRequests pending view medical record requests of the patient
+ */
+const _getTreatmentRecordsFromDb = async function (patient, pendingRequests) {
 
   const requests = []
 
   for (let i = 0; i < pendingRequests.length; i++) {
 
-    const query = _generateViewRequestQuery(patient, pendingRequests[i].filters)
     const request = {}
-    const treatmentRecords = await TreatmentRecord.find(query)
-      .select('consulted_doctor diagnosis summery date prescription -_id')
-      .populate({
-        path: 'consultedDoctorField',
-        select: 'name email role -_id'
-      })
-      .lean()
-      .exec()
+    const treatmentRecords = await treatmentRecordDal.getTreatmentRecords(patient, pendingRequests[i].filters)
     request.treatmentRecords = treatmentRecords
     request.pendingRequestId = pendingRequests[i]._id
     request.requestBy = pendingRequests[i].requestBy
@@ -76,27 +27,19 @@ const getPendingRequestsFromDb = async function (patient, pendingRequests) {
   return requests
 }
 
+
+/**
+ * Function to get the pending view requests of the patient
+ *
+ * @param req
+ * @param res
+ */
 const getPendingRequests = async function (req, res) {
 
   try {
 
-    const pendingRequest = await PrescViewRequest.find()
-      .select('request_by filters')
-      .where({
-        patient: req.user.email,
-        is_approved: false
-      })
-      .populate({
-        path: 'requestBy',
-        select: 'name email -_id'
-      })
-      .skip(req.body.offset)
-      .limit(req.body.limit)
-      .sort('created_at')
-      .lean()
-      .exec()
-
-    const requests = await getPendingRequestsFromDb(req.user.email, pendingRequest)
+    const pendingRequests = await prescViewRequestDal.getPendingRequests(req.user.email, req.body.limit, req.body.offset)
+    const requests = await _getTreatmentRecordsFromDb(req.user.email, pendingRequests)
     return res.status(200).json({
       success: true,
       pendingRequests: requests
@@ -108,6 +51,13 @@ const getPendingRequests = async function (req, res) {
   }
 
 }
+
+/**
+ * Function to create a view medical record request
+ *
+ * @param req
+ * @param res
+ */
 const create = async function (req, res) {
 
   let patient = null
@@ -141,6 +91,13 @@ const create = async function (req, res) {
     res.status(500).json('internal server error')
   }
 }
+
+/**
+ * Function to approve the pending request by the patient
+ *
+ * @param req
+ * @param res
+ */
 const approve = async function (req, res) {
 
   try {
@@ -175,19 +132,17 @@ const approve = async function (req, res) {
   }
 }
 
+/**
+ * Function to get the view request sent by the doctor or pharmacist
+ *
+ * @param req
+ * @param res
+ */
 const getSentRequests = async function (req, res) {
 
   try {
 
-    const getSentRequests = await PrescViewRequest.find()
-      .select('is_approved patient request_by filters')
-      .where({
-        request_by: req.user.email
-      })
-      .sort('created_at')
-      .skip(req.body.offset)
-      .limit(req.body.limit)
-
+    const getSentRequests = await prescViewRequestDal.getSentRequests(req.user.email, req.body.limit, req.body.offset)
     return res.status(200).json({
       success: true,
       sentRequests: getSentRequests
@@ -199,52 +154,9 @@ const getSentRequests = async function (req, res) {
   }
 }
 
-const viewRecord = async function (req, res) {
-
-  try {
-    const viewRequest = await PrescViewRequest.findOne({
-      _id: req.body.request_id
-    })
-    if (!viewRequest || (viewRequest.request_by !== req.user.email)) {
-
-      return res.status(404).json({
-        success: true,
-        message: 'invalid request id.'
-      })
-    }
-    if (viewRequest.is_approved === false) {
-
-      return res.status(200).json({
-        success: true,
-        message: 'Pending approval.'
-      })
-    }
-    const query = _generateViewRequestQuery(viewRequest.patient, viewRequest.filters)
-    const treatmentRecords = await TreatmentRecord.find(query)
-      .select('consulted_doctor diagnosis summery date prescription -_id')
-      .populate({
-        path: 'consultedDoctorField',
-        select: 'name email role -_id'
-      })
-      .sort('date')
-      .skip(req.body.offset)
-      .limit(req.body.limit)
-      .lean()
-      .exec()
-
-    return res.status(200).json({
-      success: true,
-      treatmentRecords: treatmentRecords
-    })
-  } catch (err) {
-    res.status(500).json('internal server error')
-  }
-}
-
 module.exports = {
   getPendingRequests,
   create,
   approve,
-  getSentRequests,
-  viewRecord
+  getSentRequests
 }

@@ -1,3 +1,5 @@
+'use strict'
+
 const express = require('express')
 const router = express.Router()
 const controller = require('./presc_view_requests.controller')
@@ -9,6 +11,5 @@ router.post('/create', validator(prescViewRequestValidationSchema.create), auth.
 router.post('/getSentRequests', auth.hasRole('pharmacist'), controller.getSentRequests)
 router.post('/getPatientPendingRequests', auth.hasRole('patient'), controller.getPendingRequests)
 router.post('/approve', auth.hasRole('patient'), controller.approve)
-router.post('/viewRecord', auth.hasRole('patient'), controller.viewRecord)
 
 module.exports = router

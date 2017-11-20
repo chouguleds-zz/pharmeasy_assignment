@@ -1,4 +1,6 @@
-var path = require('path')
+'use strict'
+
+const path = require('path')
 
 module.exports = {
 
@@ -12,5 +14,5 @@ module.exports = {
 
     session: 'my-test-secret'
   },
-  root: path.normalize(path.join(__dirname, '/../../..'))
+  root: path.normalize(path.join(__dirname, '/../..'))
 }

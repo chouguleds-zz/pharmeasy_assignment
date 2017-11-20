@@ -1,11 +1,18 @@
+'use strict'
+
 const Appointment = require('./appointments.model')
 const User = require('../users/users.model')
 
+/**
+ * Create appointment by the patient
+ *
+ * @param req
+ * @param res
+ */
 exports.create = async function (req, res) {
 
   let doctor = null
   try {
-
     doctor = await User.findOne({email: req.body.consulting_doctor})
 
     if (doctor === null) {

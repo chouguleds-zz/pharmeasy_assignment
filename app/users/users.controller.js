@@ -1,6 +1,14 @@
+'use strict'
+
 const User = require('./users.model')
 const bcrypt = require('bcrypt')
 
+/**
+ * Function to create user
+ *
+ * @param req
+ * @param res
+ */
 exports.create = async function (req, res) {
 
   let user = null

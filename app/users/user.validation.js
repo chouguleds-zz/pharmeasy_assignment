@@ -1,12 +1,14 @@
-const Joi = require('joi')
+'use strict'
+
+const joi = require('joi')
 
 module.exports = {
-  create: Joi.object().keys({
+  create: joi.object().keys({
 
-    email: Joi.string().email().required(),
-    password: Joi.string().min(3).required(),
-    name: Joi.string().required(),
-    role: Joi.string().required().valid('patient', 'doctor', 'pharmacist'),
-    gender: Joi.string().required().valid('male', 'female')
+    email: joi.string().email().required(),
+    password: joi.string().min(3).required(),
+    name: joi.string().required(),
+    role: joi.string().required().valid('patient', 'doctor', 'pharmacist'),
+    gender: joi.string().required().valid('male', 'female')
   })
 }

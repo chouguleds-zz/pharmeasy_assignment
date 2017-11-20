@@ -1,3 +1,5 @@
+'use strict'
+
 const jwt = require('jwt-then')
 const config = require('../config')
 const User = require('../app/users/users.model')
