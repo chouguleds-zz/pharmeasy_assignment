@@ -97,25 +97,25 @@ The postman collection is added in the git repository which has all the request 
 ```
 #### `Apis`:
 
-`User Registration`:
+##### `User Registration`:
 This api is used to register the user as per the role.
 ```
 Method: POST,
 URL: /api/users/create,
-payload: {
+Payload: {
 	"name": "prem",
 	"email":"prem@gmail.com",
 	"password": "prem",
 	"role": "pharmacist",
 	"gender": "male"
 },
-response: {
+Response: {
     "success": true/false,
     "message": "message"
 }
 ```
 
-`Login`:
+##### `Login`:
 This api will be used to authenticate the user. And after successful login it returns the `jwt token` which we need to send in the subsequent request in the headers with key `authorization`.
 ```
 Method: POST,
@@ -130,32 +130,35 @@ response: {
     "token": "json web token"
 }
 ```
-`Create Appointment`:
+
+##### `Create Appointment`:
 Using this api patient will create the appointment with following details.
 ```
+
 Method: POST,
 URL: /api/appointments/create,
-payload: {
+Payload: {
 	"patient": "chougule.ds@gmail.com",
 	"consulting_doctor": "akash@gmail.com",
 	"from_time": 1511081013000,
 	"to_time":1511084613000
 },
-headers: {
+Headers: {
     "authorization": "jwt token"
 },
-response: {
+Response: {
     "success": false,
     "message": "Appointment booked."
 }
 ```
-`Create treatment record`:
+
+##### `Create treatment record`:
 
 After user completes an appointment with the doctor, Doctor will add the treatment record for that patient for the corresponding appointment with following details.
 ```
 Method: POST,
 URL: /api/treatment_records/create,
-payload: {
+Payload: {
 	"appointment_id": "5a1147eb685a1482e6aa3cca",
 	"patient": "chougule.ds@gmail.com",
 	"consulted_doctor": "akash@gmail.com",
@@ -169,15 +172,16 @@ payload: {
 		"instructions": "daily one tablet"
 	}]
 },
-headers: {
+Headers: {
     "authorization": "jwt token"
 },
-response: {
+Response: {
     "success": true,
     "message": 'Request sent to the user.'
 }
 ```
-`Create Prescription View Request`:
+
+##### `Create Prescription View Request`:
 If in case doctor or pharmacist wants to view the treatment records/prescriptions of the patient then they will use this api with following details. This apis will submit a request to the patient and is patient approves it then only they can view the records.
 
 ```
@@ -198,7 +202,7 @@ Response: {
 }
 ```
 
-`Get pending prescription view requests for patient`:
+##### `Get pending prescription view requests for patient`:
 This api will be used by the patient to check all the pending prescription view requests. And then user can choose to approve the request. This api is paginated.
 
 ```
@@ -247,7 +251,7 @@ Response: {
 }
 ```
 
-`Approve prescription view requests for patient`:
+##### `Approve prescription view requests for patient`:
 By using this api patient can approve a medical record view request.
 ```
 Method: POST,
@@ -264,7 +268,7 @@ Response: {
 }
 ```
 
-`Get sent prescription view requests (by doctor/pharmacist)`:
+##### `Get sent prescription view requests (by doctor/pharmacist)`:
 This api will be used by the doctor/pharmacist to view the status of the all the requests they have sent. And thus they can choose to view the medical records. This api is paginated.
 
 ```
@@ -293,7 +297,7 @@ Response: {
 }
 ```
 
-`View treatment record (by doctor/pharmacist)`:
+##### `View treatment record (by doctor/pharmacist)`:
 Once patient approves the request, doctor and the pharmacist can view the medical records of the patient based on the filters. This api is paginated.
 
 ```
