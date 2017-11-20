@@ -72,7 +72,7 @@ const signToken = function (id) {
   return jwt.sign({
     _id: id
   }, config.secrets.session, {
-    expiresIn: 60 * 60 * 10
+    expiresIn: '30 days'
   })
 }
 
