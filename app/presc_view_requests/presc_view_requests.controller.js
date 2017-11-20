@@ -64,6 +64,7 @@ const create = async function (req, res) {
   try {
 
     patient = await User.findOne({email: req.body.patient})
+    // check if patient is valid or not
     if (patient === null) {
 
       return res.status(404).json({
@@ -105,7 +106,7 @@ const approve = async function (req, res) {
       _id: req.body.viewRequestId,
       patient: req.user.email
     })
-
+    // check if the request is valid or not
     if (prescViewRequest === null) {
 
       return res.status(404).json({
@@ -113,6 +114,7 @@ const approve = async function (req, res) {
         message: 'Request not found'
       })
     }
+    // return if request is already approved
     if (prescViewRequest.is_approved === true) {
 
       return res.status(200).json({

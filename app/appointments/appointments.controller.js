@@ -14,7 +14,7 @@ exports.create = async function (req, res) {
   let doctor = null
   try {
     doctor = await User.findOne({email: req.body.consulting_doctor})
-
+    // check if doctor is valid or not
     if (doctor === null) {
 
       return res.status(404).json({
