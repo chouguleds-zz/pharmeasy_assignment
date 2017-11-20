@@ -4,20 +4,20 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node app.js",
     "lint": "eslint *.js server config test && echo Lint Passed ❤",
     "test": "NODE_ENV=test _mocha --  $(find test -name '*.js') && echo All tests passed 👍"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chouguleds/my_feeds.git"
+    "url": "git+https://github.com/chouguleds/pharmeasy_assignment.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/chouguleds/my_feeds/issues"
+    "url": "https://github.com/chouguleds/pharmeasy_assignment/issues"
   },
-  "homepage": "https://github.com/chouguleds/my_feeds#readme",
+  "homepage": "https://github.com/chouguleds/pharmeasy_assignment#readme",
   "dependencies": {
     "bcrypt": "1.0.2",
     "bluebird": "3.5.0",
