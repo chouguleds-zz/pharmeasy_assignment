@@ -36,7 +36,7 @@ const _isAppointAlreadyBooked = async function (patient, doctor, time) {
  * @param req
  * @param res
  */
-exports.create = async function (req, res) {
+const create = async function (req, res) {
 
   let doctor = null
   try {
@@ -70,9 +70,44 @@ exports.create = async function (req, res) {
       success: true,
       message: 'Appointment booked.'
     })
-
   } catch (err) {
 
     res.status(500).json('internal server error')
   }
+}
+
+/**
+ * Get all appointments of the doctor
+ *
+ * @param req
+ * @param res
+ */
+const getAppointments = async function (req, res) {
+
+  try {
+    const appointments = await Appointment.find({
+      consulting_doctor: req.user.email
+    })
+      .populate({
+        path: 'patientField',
+        select: 'name email -_id'
+      })
+      .skip(req.body.offset)
+      .limit(req.body.limit)
+      .sort('created_at')
+      .lean()
+      .exec()
+    return res.status(200).json({
+      success: true,
+      appointments: appointments
+    })
+
+  } catch (err) {
+    res.status(500).json('internal server error')
+  }
+
+}
+module.exports = {
+  getAppointments,
+  create
 }

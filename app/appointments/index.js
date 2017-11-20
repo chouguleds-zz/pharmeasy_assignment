@@ -8,5 +8,5 @@ const appointmentValidationSchema = require('./appointment.validation')
 const auth = require('../../auth/auth.service.js')
 
 router.post('/create', validator(appointmentValidationSchema.create), auth.hasRole('patient'), controller.create)
-
+router.post('/getAppointments', auth.hasRole('doctor'), controller.getAppointments)
 module.exports = router

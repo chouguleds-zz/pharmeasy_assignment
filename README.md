@@ -9,7 +9,7 @@ The Patient has medical records and prescriptions. If a doctor asks for a patien
 
 #### Hosted backend has following base url
 
-URL: `Link`
+Base URL: `18.217.49.88:9000`
 The postman collection is added in the git repository which has all the request saved in it and can be used to test the application.
 
 ### Technologies and the modules used:
@@ -151,7 +151,28 @@ Response: {
     "message": "Appointment booked."
 }
 ```
+getAppointments
 
+##### `Get All Doctor's Appointments`:
+Using this api patient will create the appointment with following details.
+```
+
+Method: POST,
+URL: /api/appointments/create,
+Payload: {
+	"patient": "chougule.ds@gmail.com",
+	"consulting_doctor": "akash@gmail.com",
+	"from_time": 1511081013000,
+	"to_time":1511084613000
+},
+Headers: {
+    "authorization": "jwt token"
+},
+Response: {
+    "success": false,
+    "message": "Appointment booked."
+}
+```
 ##### `Create treatment record`:
 
 After user completes an appointment with the doctor, Doctor will add the treatment record for that patient for the corresponding appointment with following details.
